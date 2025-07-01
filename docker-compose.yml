@@ -1,0 +1,16 @@
+services:
+  mock-tripay:
+    build: .
+    container_name: mock_tripay
+    restart: always
+    environment:
+      - PORT=3001
+      - GIN_MODE=release
+    ports:
+      - "3001:3001"
+    networks:
+      - mock_tripay_network
+
+networks:
+  mock_tripay_network:
+    driver: bridge
