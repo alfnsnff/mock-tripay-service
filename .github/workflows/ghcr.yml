@@ -18,7 +18,7 @@ jobs:
 
       - name: Build and Push Docker image
         run: |
-          docker build -t ghcr.io/${{ secrets.GHCR_USERNAME }}/tripay-mock-server:latest .
-          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/tripay-mock-server:latest
+          docker build -t ghcr.io/${{ secrets.GHCR_USERNAME }}/mockservice:latest .
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/mockservice:latest
 
           name: Deploy to Azure Container App
