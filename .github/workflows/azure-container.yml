@@ -1,3 +1,4 @@
+name: Deploy GO
 
 on:
   workflow_run:
