@@ -23,7 +23,7 @@ jobs:
           containerAppName: ${{ secrets.AZURE_CONTAINER_APP_NAME }}
           resourceGroup: ${{ secrets.AZURE_RESOURCE_GROUP }}
           location: southeastasia  
-          imageToDeploy: ghcr.io/${{ github.repository_owner }}/mockservice:${{ github.sha }}
+          imageToDeploy: ghcr.io/${{ github.repository_owner }}/mockservice:latest
           registryUrl: ghcr.io
           registryUsername: ${{ secrets.GHCR_USERNAME }}
           registryPassword: ${{ secrets.GHCR_PAT }}
