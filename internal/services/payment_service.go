@@ -27,7 +27,7 @@ func NewPaymentService() *PaymentService {
 		transactions:    make(map[string]*models.TransactionDetailData),
 		mutex:           sync.RWMutex{},
 		stats:           &models.MockStats{},
-		successRate:     0.99, // 98% success rate
+		successRate:     0.999, // 98% success rate
 		avgResponseTime: 100 * time.Millisecond,
 		autoPayDelay:    30 * time.Second, // Auto-pay after 30 seconds
 	}
