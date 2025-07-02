@@ -42,14 +42,14 @@ func (s *PaymentService) CreateTransaction(req *models.CreateTransactionRequest)
 	// Simulate processing delay
 	s.simulateDelay()
 
-	// Simulate random failure
-	if rand.Float32() > s.successRate {
-		s.updateStats(time.Since(start), false)
-		return &models.APIResponse{
-			Success: false,
-			Message: "Payment gateway temporarily unavailable",
-		}, nil
-	}
+	// // Simulate random failure
+	// if rand.Float32() > s.successRate {
+	// 	s.updateStats(time.Since(start), false)
+	// 	return &models.APIResponse{
+	// 		Success: false,
+	// 		Message: "Payment gateway temporarily unavailable",
+	// 	}, nil
+	// }
 
 	// Generate unique reference
 	reference := s.generateReference()
@@ -325,8 +325,6 @@ func (s *PaymentService) simulateAutoPayment(reference string) {
 	transaction.UpdatedAt = now
 
 	s.stats.PaidTransactions++
-
-	fmt.Printf("🎉 Auto-payment completed: %s (Amount: %d)\n", reference, transaction.Amount)
 }
 
 func (s *PaymentService) updateStats(duration time.Duration, success bool) {
