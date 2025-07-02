@@ -27,7 +27,7 @@ func NewPaymentService() *PaymentService {
 		transactions:    make(map[string]*models.TransactionDetailData),
 		mutex:           sync.RWMutex{},
 		stats:           &models.MockStats{},
-		successRate:     0.98, // 98% success rate
+		successRate:     0.99, // 98% success rate
 		avgResponseTime: 100 * time.Millisecond,
 		autoPayDelay:    30 * time.Second, // Auto-pay after 30 seconds
 	}
@@ -42,14 +42,14 @@ func (s *PaymentService) CreateTransaction(req *models.CreateTransactionRequest)
 	// Simulate processing delay
 	s.simulateDelay()
 
-	// // Simulate random failure
-	// if rand.Float32() > s.successRate {
-	// 	s.updateStats(time.Since(start), false)
-	// 	return &models.APIResponse{
-	// 		Success: false,
-	// 		Message: "Payment gateway temporarily unavailable",
-	// 	}, nil
-	// }
+	// Simulate random failure
+	if rand.Float32() > s.successRate {
+		s.updateStats(time.Since(start), false)
+		return &models.APIResponse{
+			Success: false,
+			Message: "Payment gateway temporarily unavailable",
+		}, nil
+	}
 
 	// Generate unique reference
 	reference := s.generateReference()
